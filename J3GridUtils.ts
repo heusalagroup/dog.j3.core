@@ -3,6 +3,33 @@
 /**
  * @module
  * @overview A set of utilities for working with `J3Grid` objects.
+ *
+ * ```typescript
+ * import { J3Cell, createJ3Cell } from './dog/j3/core/J3Cell';
+ * import { J3Coordinate, createJ3Coordinate } from './dog/j3/core/J3Coordinate';
+ * import { J3Grid, createJ3Grid } from './dog/j3/core/J3Grid';
+ * import { J3GridUtils } from './dog/j3/core/J3GridUtils.ts';
+ *
+ * // Initialize a grid with a single cell at coordinate (0, 0, 0)
+ * const grid = createJ3Grid([
+ *     {
+ *         coordinate: createJ3Coordinate(0, 0, 0),
+ *         rows: [
+ *             {
+ *                 coordinate: createJ3Coordinate(0, 0, 0),
+ *                 cells: [createJ3Cell(createJ3Coordinate(0, 0, 0), "Hello")]
+ *             }
+ *         ]
+ *     }
+ * ]);
+ *
+ * // Replace the cell at (0, 0, 0) with a new cell
+ * const newCell: J3Cell = createJ3Cell(createJ3Coordinate(0, 0, 0), "World");
+ * const updatedGrid: J3Grid = J3GridUtils.replaceCell(grid, createJ3Coordinate(0, 0, 0), newCell);
+ *
+ * console.log(grid.layers[0].rows[0].cells[0].value); // 'Hello'
+ * console.log(updatedGrid.layers[0].rows[0].cells[0].value); // 'World'
+ * ```
  */
 
 import { J3Coordinate } from "./J3Coordinate";
