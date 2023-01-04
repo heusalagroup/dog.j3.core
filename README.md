@@ -32,6 +32,17 @@ const grid: J3Grid = createJ3Grid([]);
 For a complete list of available functions and data structures, see the API 
 documentation in the source files.
 
+## Type relations
+
+```mermaid
+graph TD
+
+J3Grid[J3Grid] --> J3Layer[J3Layer]
+J3Layer --> J3Cell[J3Cell]
+J3Cell --> J3Coordinate[J3Coordinate]
+J3Cell --> J3Formula[J3Formula]
+```
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)

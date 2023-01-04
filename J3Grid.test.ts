@@ -1,12 +1,56 @@
 // Copyright (c) 2023. Heusala Group Oy <info@heusalagroup.fi>. All rights reserved.
 
-import { createJ3Grid, J3Grid } from "./J3Grid";
+import { createJ3Grid, isJ3Grid, J3Grid } from "./J3Grid";
 import { createJ3Layer } from "./J3Layer";
 import { createJ3Row } from "./J3Row";
 import { createJ3Cell } from "./J3Cell";
 import { createJ3Coordinate } from "./J3Coordinate";
 
 describe('J3Grid', () => {
+
+    describe('isJ3Grid', () => {
+        it('returns true for a valid J3Grid object', () => {
+            expect(isJ3Grid({
+                                layers: [
+                                    {
+                                        coordinate: {
+                                            x: 0,
+                                            y: 0,
+                                            z: 0
+                                        },
+                                        rows: [
+                                            {
+                                                coordinate: {
+                                                    x: 0,
+                                                    y: 0,
+                                                    z: 0
+                                                },
+                                                cells: [
+                                                    {
+                                                        coordinate: {
+                                                            x: 0,
+                                                            y: 0,
+                                                            z: 0
+                                                        },
+                                                        value: 'foo'
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            })).toBe(true);
+        });
+
+        it('returns false for a non-object value', () => {
+            expect(isJ3Grid('not an object')).toBe(false);
+        });
+
+        it('returns false for an object with an invalid "layers" property', () => {
+            // @ts-ignore
+            expect(isJ3Grid({layers: 'not an array'})).toBe(false);
+        });
+    });
 
     describe('createJ3Grid', () => {
 
